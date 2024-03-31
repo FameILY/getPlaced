@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="custom-css/login-regis.css">
+    <title>Get Placed!</title>
+</head>
+
+<body>
+
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form method="POST" action="/register">
+                <h1>Create Account</h1>
+                <input required type="text" name="accountFirstName" placeholder="FirstName">
+				<input required type="text" name="accountLastName" placeholder="LastName">
+				<input required type="number" name="accountContactNo" placeholder="Contact No">
+                <input required type="email" name="accountEmail" placeholder="Email">
+                <input required type="password" name="accountPassword" placeholder="Password">
+				<div class="dropdown">
+                    <div class="dropdown-content">
+                        <select required name="role" >
+							<option value="" disabled selected>Select Your Role</option>
+                            <option value="student">Student</option>
+                            <option value="mentor">Mentor</option>
+                            <option value="company">Company</option>
+                            <option value="alumni">Alumni</option>
+                        </select>
+                    </div>
+                </div>
+                <button>Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form action="/login" method="POST">
+                <h1>Log in</h1>
+                <input type="email" name="accountEmail" placeholder="Email" required>
+                <input type="password" name="accountPassword" placeholder="Password" required>
+				<!-- <div class="dropdown">
+                    <div class="dropdown-content">
+                        <select name="role" required>
+							<option value="" disabled selected>Select Your Role</option>
+                            <option value="student">Student</option>
+                            <option value="mentor">Mentor</option>
+                            <option value="company">Company</option>
+                            <option value="alumni">Alumni</option>
+                        </select>
+                    </div>
+                </div> -->
+                <a href="#">Forget Your Password?</a>
+                <button type="submit">Log in</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Get Placed!</h1>
+                    <p>Enter your personal details to sign up</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Get Placed!</h1>
+                    <p>Register with your personal details to Sign in</p>
+                    <button class="hidden" id="register">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="frontend-js/login-regis.js"></script>
+	
+
+</body>
+
+</html>
