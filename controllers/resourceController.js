@@ -28,7 +28,7 @@ exports.getCourses = async (req, res) => {
       let result = await resource.getCourses(domain); //runs the script
 
       if (result == "Error occurred") {
-        res.status(404).json({ message: result });
+        return { message: result };
       } else {
         //saving to the collection for easy access
         console.log("got the result from the script");
@@ -40,12 +40,12 @@ exports.getCourses = async (req, res) => {
         //returning the stored data
         let docs = await resource.getCoursesByDomain(domain)
         
-        res.status(200).json({ Courses: docs });
+        return { Courses: docs };
         
       }
     } else {
         console.log("Already in the db so returning directly")
-        res.status(200).json({Courses : arrayOfDocs})
+        return { Courses : arrayOfDocs}
     }
     
 
@@ -83,7 +83,7 @@ exports.getArticles = async (req, res) => {
       let result = await resource.getArticles(domain); //runs the script
 
       if (result == "Error occurred") {
-        res.status(404).json({ message: result });
+        return { message: result };
       } else {
         //saving to the collection for easy access
         console.log("got the result from the script");
@@ -95,12 +95,12 @@ exports.getArticles = async (req, res) => {
         //returning the stored data
         let docs = await resource.getArticlesByDomain(domain)
         
-        res.status(200).json({ Articles: docs });
+        return { Articles: docs };
         
       }
     } else {
         console.log("Already in the db so returning directly")
-        res.status(200).json({Articles : arrayOfDocs})
+        return { Articles : arrayOfDocs}
     }
     
 

@@ -1,5 +1,6 @@
 const Account = require("../models/Account");
 const Student = require("../models/Student");
+const resourceController = require("./resourceController")
 
 exports.regAccount = async (req, res) => {
   try {
@@ -126,9 +127,27 @@ exports.renderHome = async (req, res) => {
       let account = new Account()
       let checkProfile = await account.checkProfile(req.session.user.accountEmail)
       if(checkProfile == false) {
-        await req.flash('errors', "Set up your profile to get personalized interface")
+        console.log("profile not set")
+
+
+        // Check if errors have not been set before
+        if (!req.session.profileErrorSet) {
+          await req.flash('errors', "Set up your profile to get personalized interface");
+          req.session.profileErrorSet = true; // Set flag to indicate that error has been set
+        }
+        
+        console.log(req.flash('errors'));
+        res.render('dashboard', { Student: studProf, Course: null, Articles: null})
+
+      } else {
+        console.log("profile is set")
+        let courses = await resourceController.getCourses(req, res)
+        console.log(courses)
+        let articles = await resourceController.getArticles(req, res)
+        console.log(articles)
+      
+        res.render('dashboard', { Student: studProf, Course: courses, Articles: articles})
       }
-      res.render('dashboard', { Student: studProf})
     } else {
       console.log('not a student')
       res.status(200).json({message: "not a student"})
