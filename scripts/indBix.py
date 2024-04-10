@@ -33,25 +33,25 @@ def scrape_indBix(company, pno):
         element = soup.find("div", class_="topics-wrapper") 
         data = element.find("div", class_="paper-data").text.strip()
 
-        testData = []
-        for match in re.finditer(r'(\d+)\.\s*(.*?)\s*Answer:\s*([a-d])\s*Solution:\s*((?:(?!(?:\d+\.\s*|\Z)).)*)', data, re.DOTALL):
+        # testData = []
+        # for match in re.finditer(r'(\d+)\.\s*(.*?)\s*Answer:\s*([a-d])\s*Solution:\s*((?:(?!(?:\d+\.\s*|\Z)).)*)', data, re.DOTALL):
 
-            question_statement = match.group(2).strip()
-            options = [
-                {"option": "a", "text": match.group(3).strip()}
-            ]
-            solution = match.group(4).strip()
+        #     question_statement = match.group(2).strip()
+        #     options = [
+        #         {"option": "a", "text": match.group(3).strip()}
+        #     ]
+        #     solution = match.group(4).strip()
 
-            # Store question information in a dictionary
-            question_info = {
-                "question_statement": question_statement,
-                "options": options,
-                "correct_answer": options[0]["text"],  # We'll just use the first option as the correct answer
-                "solution": solution
-            }
-            testData.append(question_info)
+        #     # Store question information in a dictionary
+        #     question_info = {
+        #         "question_statement": question_statement,
+        #         "options": options,
+        #         "correct_answer": options[0]["text"],  # We'll just use the first option as the correct answer
+        #         "solution": solution
+        #     }
+        #     testData.append(question_info)
         
-        print(json.dumps(testData, indent=2))
+        print(json.dumps(data, indent=2))
         thumbnail_element = element.find("div", class_="company-img") #done
         thumbnail = thumbnail_element.find("img")["src"] #done
 

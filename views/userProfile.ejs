@@ -1,0 +1,349 @@
+<%-include("./includes/header.ejs")%>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@2.0.1/dist/css/multi-select-tag.css">
+
+<script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@2.0.1/dist/js/multi-select-tag.js"></script>
+<!-- Nav Header Component Start -->
+          <div class="iq-navbar-header" style="height: 215px;">
+              <div class="container-fluid iq-container">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="flex-wrap d-flex justify-content-between align-items-center">
+                              <div>
+                                  <h1>Set up your profile here 🤩</h1>
+                                  <p>Add your Details which lets us understand you better!🤗💖</p>
+                              </div>
+                              <div>
+                                 
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="iq-header-img">
+                  <img src="wall4.jpg" alt="header" class="theme-color-default-img img-fluid w-100 h-100 animated-scaleX">
+
+              </div>
+          </div>          <!-- Nav Header Component End -->
+        <!--Nav End-->
+      </div>
+      <div class="conatiner-fluid content-inner mt-n5 py-0">
+         <form method="post" action="/setUpProfile" enctype="multipart/form-data">
+
+      <div>
+         <div class="row">
+            <div class="col-xl-3 col-lg-4">
+               <div class="card">
+                  <div class="card-header d-flex justify-content-between">
+                     <div class="header-title">
+                        <h4 class="card-title">Essentials</h4>
+                     </div>
+                  </div>
+                  <div class="card-body">
+                        <div class="form-group">
+                           <div class="profile-img-edit position-relative">
+                              <img src="/profileImages/<%=Student.profileImage%>" alt="profile-pic" class="theme-color-default-img profile-pic rounded avatar-100">
+                
+                              <div class="upload-icone bg-primary">
+                                 <svg class="upload-button" width="14" height="14" viewBox="0 0 24 24" onclick="document.querySelector('.file-upload').click();">
+                                    <path fill="#ffffff" d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z" />
+                                 </svg>
+                                 <input id="file-upload" name="profileImage"  class="file-upload" type="file" accept=".jpg,.jpeg,.png,.gif">
+                              </div>
+                           </div>
+                           <div class="img-extension mt-3">
+                              <div class="d-inline-block align-items-center">
+                                 <span>Only</span>
+                                 <a href="javascript:void();">.jpg</a>
+                                 <a href="javascript:void();">.png</a>
+                                 <a href="javascript:void();">.jpeg</a>
+                                 <a href="javascript:void();">.gif</a>
+
+                                 <span>allowed</span>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label class="form-label">Domain:</label>
+                           <select name="domains" class="selectpicker form-control" data-style="py-0">
+                              <option>Select</option>
+                              <option value="Blockchain"  <% if (Student.domains === 'Blockchain') { %>selected<% } %> >Blockchain</option>
+                              <option value="AI"  <% if (Student.domains === 'AI') { %>selected<% } %>>Artificial Intellegence (AI)</option>
+                              <option value="webDevelopment"  <% if (Student.domains === 'webDevelopment') { %>selected<% } %>>Web Development</option>
+                              <option value="Flutter"  <% if (Student.domains === 'Flutter') { %>selected<% } %>>Flutter</option>
+                              <option value="nodejs"  <% if (Student.domains === 'nodejs') { %>selected<% } %>>Node Js</option>
+                           </select>
+                        </div>
+                        <div class="form-group">
+                           <label class="form-label" for="languages">Lanuages:</label>
+                           <select class="form-control" name="languages" id="languages" multiple>
+
+                              <% if (Student.languages != null) {%>
+                              <option> Select </option>
+                              <% const selectedLanguages = Student.languages; %>
+                              <option value="java" <%= selectedLanguages.includes('java') ? 'selected' : '' %>>Java</option>
+                              <option value="python" <%= selectedLanguages.includes('python') ? 'selected' : '' %>>Python</option>
+                              <option value="ruby" <%= selectedLanguages.includes('ruby') ? 'selected' : '' %>>Ruby</option>
+                              <option value="pearl" <%= selectedLanguages.includes('pearl') ? 'selected' : '' %>>Pearl</option>
+                              <option value="php" <%= selectedLanguages.includes('php') ? 'selected' : '' %>>PHP</option>
+
+                              <%} else { %>
+
+                                 <option value="java" >Java</option>
+                                 <option value="python" >Python</option>
+                                 <option value="ruby" >Ruby</option>
+                                 <option value="pearl" >Pearl</option>
+                                 <option value="php" >PHP</option>
+   
+
+
+                                 <% }%>
+                              </select>
+                        </div>
+
+                        <script>
+                           new MultiSelectTag('languages')  // id
+                       </script>
+                        <div class="form-group">
+                           <label class="form-label" for="skills">Skills:</label>
+                           <input type="text" class="form-control" name="skills" value="<%=Student.skills%>" id="skills" placeholder="">
+                        </div>
+                        <div class="form-group">
+                           <label class="form-label" for="interests">Interests:</label>
+                           <input type="text" class="form-control" name="interests" value="<%=Student.interests%>" id="interests" placeholder="">
+                        </div>
+                        <div class="form-group mb-0">
+                           <label class="form-label" for="bio">Bio:</label>
+                           <input type="text" class="form-control" name="bio" value="<%=Student.bio%>" id="bio" placeholder="">
+                        </div>
+                  
+                  </div>
+               </div>
+            </div>
+            <div class="col-xl-9 col-lg-8">
+               <div class="card">
+                  <div class="card-header d-flex justify-content-between">
+                     <div class="header-title">
+                        <h4 class="card-title">Personal Information</h4>
+                     </div>
+                  </div>
+                  <div class="card-body">
+                     <div class="new-user-info">
+                      
+                           <div class="row">
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" for="fname">First Name:</label>
+                                 <input type="text" disabled class="form-control" name="studentFirstName" value="<%=Student.studentFirstName%>" id="fname" placeholder="First Name">
+                              </div>
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" for="lname">Last Name:</label>
+                                 <input type="text" disabled class="form-control" name="studentLastName" value="<%=Student.studentLastName%>" id="lname" placeholder="Last Name">
+                              </div>
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" for="email">Email:</label>
+                                 <input type="email" disabled class="form-control" id="email" name="studentEmail" value="<%=Student.studentEmail%>" placeholder="your email">
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label class="form-label" for="mobno">Mobile Number:</label>
+                                <input type="text" class="form-control" name="contactNumber" value="<%=Student.contactNumber%>" id="mobno" placeholder="Mobile Number">
+                             </div>
+
+
+                             <%
+                             // Check if Student.dateOfBirth is defined and not null
+
+                                 function convertDate(d) {
+                                 // Convert Student.dateOfBirth into a Date object
+                                 let dobDate = new Date(d);
+                                 // Extract year, month, and day
+                                 let year = dobDate.getFullYear();
+                                 let month = String(dobDate.getMonth() + 1).padStart(2, '0');
+                                 let day = String(dobDate.getDate()).padStart(2, '0');
+                                 // Construct the YYYY-MM-DD date format
+                                 let dobValue = `${year}-${month}-${day}`;
+
+                                 return dobValue
+
+                                 }
+                             %>
+
+                             <div class="form-group col-md-6">
+                              <label class="form-label" for="dob">Date of Birth:</label>
+                              <input type="date" class="form-control" id="dob"  name="dateOfBirth" value="<%=convertDate(Student.dateOfBirth)%>" placeholder="Date of birth">
+                           </div>
+                           
+                           %>
+                           <div class="form-group col-md-6">
+                             <label class="form-label" for="gender">Gender:</label>
+                             <select class="selectpicker form-control" name="gender" id="gender">
+                              <option value="select">Select</option>
+                              <option value="male" <% if (Student.gender === 'male') { %>selected<% } %>>Male</option>
+                              <option value="female"<% if (Student.gender === 'female') { %>selected<% } %>>Female</option>
+                              <option value="other"<% if (Student.gender === 'other') { %>selected<% } %>>Other</option>
+                             </select>
+                          </div>
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" for="city">City:</label>
+                                 <input type="text" class="form-control" id="city" name="city" value="<%=Student.city%>" placeholder="City Name">
+                              </div>
+                              <div class="form-group col-md-6">
+                                 <label class="form-label">Country:</label>
+                                 <select name="type" class="selectpicker form-control" name="country" data-style="py-0">
+                                    <option>Select Country</option>
+                                    <option value="caneda" <% if (Student.country === 'caneda') { %>selected<% } %>>Caneda</option>
+                                    <option value="noida" <% if (Student.country === 'noida') { %>selected<% } %>>Noida</option>
+                                    <option value="usa" <% if (Student.country === 'usa') { %>selected<% } %>>USA</option>
+                                    <option value="india" <% if (Student.country === 'india') { %>selected<% } %>>India</option>
+                                    <option value="africa" <% if (Student.country === 'africa') { %>selected<% } %>>Africa</option>
+                                 </select>
+                              </div>
+                              
+                              <div class="form-group col-md-12">
+                                 <label class="form-label" for="add">Address:</label>
+                                 <input type="text" class="form-control" name="address" value="<%=Student.address%>" id="add" placeholder="Address">
+                              </div>
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" for="state">State:</label>
+                                 <input type="text" class="form-control" name="state" value="<%=Student.state%>" id="state" placeholder="State">
+                              </div>
+
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" for="pinCode">Pin Code:</label>
+                                 <input type="number" class="form-control" name="pinCode" value="<%=Student.pinCode%>" id="pinCode" placeholder="Pin Code">
+                              </div>
+
+
+                           <hr>
+                           <h5 class="mb-3">Work Experience</h5>
+                           <div class="row">
+                              <div class="form-group col-md-12">
+                                 <label class="form-label" for="uname">Title:</label>
+                                 <input type="text" class="form-control" name="title" value="<%=Student.workExperience[0].title%>" id="uname" placeholder="User Name">
+                              </div>
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" for="company">Company:</label>
+                                 <input type="text" class="form-control" name="company" value="<%=Student.workExperience[0].company%>" id="company" placeholder="Name of the Company/organization">
+                              </div>
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" for="location">Location:</label>
+                                 <input type="text" class="form-control" name="location" value="<%=Student.workExperience[0].location%>"  id="location" placeholder="Location">
+                              </div>
+
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" for="workIndustry">Work Industry:</label>
+                                 <input type="text" class="form-control" name="workIndustry" value="<%=Student.workExperience[0].workIndustry%>" id="workIndustry" placeholder="eg. Information Technology...">
+                              </div>
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" for="workCountry">Work Country:</label>
+                                 <input type="text" class="form-control" name="workCountry" value="<%=Student.workExperience[0].workCountry%>"  id="workCountry" placeholder="Country...">
+                              </div>
+
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" for="startDate">Start Date:</label>
+                                 <input type="date" class="form-control" name="startDate" value="<%=convertDate(Student.workExperience[0].startDate)%>" id="startDate" placeholder="">
+                              </div>
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" for="endDate">End Date:</label>
+                                 <input type="date" class="form-control" name="endDate" value="<%=convertDate(Student.workExperience[0].endDate)%>"  id="endDate" placeholder="">
+                              </div>
+
+                              <div class="form-group col-md-12">
+                                 <label class="form-label" for="description">Description:</label>
+                                 <input type="text" class="form-control" name="description" value="<%=Student.workExperience[0].description%>" id="description" placeholder="description...">
+                              </div>
+
+
+                           </div>
+
+
+                           <hr>
+                           <h5 class="mb-3">Education</h5>
+                           <div class="row">
+                              <div class="form-group col-md-12">
+                                 <label class="form-label" for="school">School:</label>
+                                 <input type="text" class="form-control" name="school" value="<%=Student.education[0].school%>" id="school" placeholder="">
+                              </div>
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" for="degree">Degree:</label>
+                                 <input type="text" class="form-control" name="degree" value="<%=Student.education[0].degree%>" id="degree" placeholder="">
+                              </div>
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" for="field">Field:</label>
+                                 <input type="text" class="form-control" name="field" value="<%=Student.education[0].field%>"  id="field" placeholder="">
+                              </div>
+
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" for="educationStartDate">Start Date:</label>
+                                 <input type="date" class="form-control" name="educationStartDate" value="<%=convertDate(Student.education[0].educationStartDate)%>" id="educationStartDate" placeholder="">
+                              </div>
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" for="educationEndDate">End Date:</label>
+                                 <input type="date" class="form-control" name="educationEndDate" value="<%=convertDate(Student.education[0].educationEndDate)%>"  id="educationEndDate" placeholder="">
+                              </div>
+
+                           </div>
+
+
+                           <!-- projects -->
+
+                           <hr>
+                           <h5 class="mb-3">Projects</h5>
+                           <div class="row">
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" for="projectName">Project Name:</label>
+                                 <input type="text" class="form-control" name="projectName" value="<%=Student.projects[0].projectName%>" id="projectName" placeholder="">
+                              </div>
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" value="associatedWith" for="field">Associated with:</label>
+                                 <input type="text" class="form-control" name="associatedWith" value="<%=Student.projects[0].associatedWith%>"  id="associatedWith" placeholder="">
+                              </div>
+                              <div class="form-group col-md-12">
+                                 <label class="form-label" for="projectDescription">Description:</label>
+                                 <input type="text" class="form-control" name="projectDescription" value="<%=Student.projects[0].projectDescription%>" id="projectDescription" placeholder="">
+                              </div>
+
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" for="projectStartDate">Start Date:</label>
+                                 <input type="date" class="form-control" name="projectStartDate" value="<%=convertDate(Student.projects[0].projectStartDate)%>" id="projectStartDate" placeholder="">
+                              </div>
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" for="projectEndDate">End Date:</label>
+                                 <input type="date" class="form-control" name="projectEndDate" value="<%=convertDate(Student.projects[0].projectEndDate)%>"  id="projectEndDate" placeholder="">
+                              </div>
+
+                           </div>
+
+                           <!-- certificates -->
+
+                           <hr>
+                           <h5 class="mb-3">Certificatons</h5>
+                           <div class="row">
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" for="certificateName">Name:</label>
+                                 <input type="text" class="form-control" name="certificateName" value="<%=Student.certificates[0].certificateName%>" id="certificateName" placeholder="">
+                              </div>
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" for="certificateDescription">Description:</label>
+                                 <input type="text" class="form-control" name="certificateDescription" value="<%=Student.certificates[0].certificateDescription%>" id="certificateDescription" placeholder="">
+                              </div>
+                              <div class="form-group col-md-6">
+                                 <label class="form-label" for="certificateImage">Image:</label>
+                                 <img class="img-fluid" src="/certificates/<%=Student.certificates[0].certificateImage%>"/>
+                                 <input type="file" accept=".jpg,.png,.jpeg,.gif" class="form-control" name="certificateImage" value="<%=Student.certificates[0].certificateImage%>"  id="certificateImage" placeholder="">
+                              </div>
+
+                           </div>
+                          
+                           <button type="submit" class="btn btn-primary">Set up</button>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      </div>
+      
+      <!-- Footer Section Start -->
+<%-include("./includes/footer.ejs")%>
+    

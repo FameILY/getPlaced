@@ -5,6 +5,7 @@ const path = require("path");
 exports.setUpProfile = async (req, res) => {
   try {
     if (!req.session.user) {
+      console.log("no session ")
       res.status(400).json({ message: "Session required" });
     } else {
       // They should also give me email address or _id from session
@@ -38,9 +39,22 @@ exports.setUpProfile = async (req, res) => {
           "certificates",
           fileName
         );
+
+
         await file.mv(savePath);
         req.body.certificateImage = fileName;
       }
+
+      if (req.files.profileImage == null) {
+        console.log("no profile image to edit")
+        delete req.body.profileImage;
+      }
+
+      if (req.files.certificateImage == null) {
+        console.log("no certificate image to edit")
+        delete req.body.certificateImage;
+      }
+
 
       //sending to model
       console.log(req.session.user.accountEmail)
@@ -54,7 +68,7 @@ exports.setUpProfile = async (req, res) => {
         // console.log(data._id)
         let result = account.updateStatus(data.studentEmail);
         if (result != null) {
-          return res.status(200).json({ message: data });
+          return res.status(200).redirect('/setUpProfile')
         } else {
           console.log("Something wrong when updating status");
         }
@@ -67,3 +81,13 @@ exports.setUpProfile = async (req, res) => {
     return res.status(400).json({ message: error });
   }
 };
+
+exports.renderSetProfile = async (req,res) => {
+
+
+  let student = new Student()
+  let prof = await student.getStudentByEmail(req.session.user.accountEmail)
+
+  res.render('userProfile', {Student: prof})
+
+}

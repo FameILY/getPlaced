@@ -29,7 +29,8 @@ exports.regAccount = async (req, res) => {
 
           if (data !== null) {
             console.log(data._id);
-            return res.status(200).json({ data: isSuccess, id: data._id });
+            // return res.status(200).json({ data: isSuccess, id: data._id });
+            res.redirect('/')
           } else {
             return res.status(400).json({ message: data });
           }
@@ -59,8 +60,8 @@ exports.loginAccount = async (req, res) => {
     if (data == "Invalid Credentials") {
       // console.log("invalid creds")
       // req.flash('errors', 'Invalid Creds baby!')
-      return res.status(400).json({ message: data });
-      // res.redirect('/login')
+      // return res.status(400).json({ message: data });
+      res.redirect('/login')
     } else {
       console.log("This nigga Logged in: ", data.accountEmail);
       if (data.role == "student") {
@@ -130,21 +131,21 @@ exports.renderHome = async (req, res) => {
         console.log("profile not set")
 
 
-        // Check if errors have not been set before
-        if (!req.session.profileErrorSet) {
-          await req.flash('errors', "Set up your profile to get personalized interface");
-          req.session.profileErrorSet = true; // Set flag to indicate that error has been set
-        }
+        // // Check if errors have not been set before
+        // if (!req.session.profileErrorSet) {
+        //   await req.flash('errors', "Set up your profile to get personalized interface");
+        //   req.session.profileErrorSet = true; // Set flag to indicate that error has been set
+        // }
         
-        console.log(req.flash('errors'));
-        res.render('dashboard', { Student: studProf, Course: null, Articles: null})
+        // console.log(req.flash('errors'));
+        res.render('dashboard', { Student: studProf, Course: null, Articles: null, errors:  ["Set up your profile to get personalized interface"]})
 
       } else {
         console.log("profile is set")
         let courses = await resourceController.getCourses(req, res)
-        console.log(courses)
+        // console.log(courses)
         let articles = await resourceController.getArticles(req, res)
-        console.log(articles)
+        // console.log(articles)
       
         res.render('dashboard', { Student: studProf, Course: courses, Articles: articles})
       }

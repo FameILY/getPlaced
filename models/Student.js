@@ -155,7 +155,7 @@ Student.prototype.setUpProfile = async function (userProfile, em) {
           languages: userProfile.languages, // Dropdown
           skills: userProfile.skills, // API key se hoga kaam
           interests: userProfile.interests,
-          domains: userProfile.domains,
+          domains: userProfile.domains.trim(),
           bio: userProfile.bio,
           projects: [
             {
@@ -198,6 +198,59 @@ Student.prototype.setUpProfile = async function (userProfile, em) {
     console.log(err);
   }
 };
+
+//new one:
+
+
+// Student.prototype.setUpProfile = async function (userProfile, em) {
+//   console.log("inside model");
+//   let email = em;
+
+//   try {
+//     // Construct the $set object dynamically
+//     let $set = {};
+
+//     // Loop through properties of userProfile
+//     Object.keys(userProfile).forEach(key => {
+//       // Check if the property value is not null or undefined
+//       if (
+//         userProfile[key] !== null &&
+//         userProfile[key] !== undefined &&
+//         key !== "profileImage" &&
+//         key !== "certificateImage"
+//       ) {
+//         // Add the property to the $set object
+//         $set[key] = userProfile[key];
+//       }
+//     });
+
+//     // Check if profileImage and certificateImage are provided
+//     if (userProfile.profileImage !== undefined) {
+//       $set.profileImage = userProfile.profileImage;
+//     }
+//     if (userProfile.certificateImage !== undefined || userProfile.certificateImage !== null) {
+//       $set.certificateImage = userProfile.certificateImage;
+//     }
+
+//     // Perform the update only if $set is not empty
+//     if (Object.keys($set).length > 0) {
+//       let data = await studentsCollection.findOneAndUpdate(
+//         { studentEmail: email },
+//         { $set },
+//         { new: true }
+//       );
+
+//       return data;
+//     } else {
+//       // No fields to update
+//       return null;
+//     }
+//   } catch (err) {
+//     console.log(err);
+//     return null;
+//   }
+// };
+
 
 Student.prototype.getStudentByEmail = async function (accountEmail) {
   console.log("Account to find: ", accountEmail);

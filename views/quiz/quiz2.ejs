@@ -1,0 +1,149 @@
+<%-include('../includes/header.ejs') %>
+
+    <%-include('../includes/flash.ejs')%>
+
+        <link rel="stylesheet" href="custom-css/quiz.css" />
+
+
+
+        <!-- Nav Header Component Start -->
+        <div class="iq-navbar-header" style="height: 215px;">
+            <div class="container-fluid iq-container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="flex-wrap d-flex justify-content-between align-items-center">
+                            <div>
+                                <h1>Train!</h1>
+                                <p>Welcome to Get Placed, your go-to preparation web app for college placements! Our
+                                    platform is designed
+                                    to help you excel in your job search journey by providing curated courses and
+                                    insightful blogs tailored
+                                    to your needs. </p>
+                            </div>
+                            <!-- <div>
+                                              <a href="" class="btn btn-link btn-soft-light">
+                                                  <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                      <path d="M11.8251 15.2171H12.1748C14.0987 15.2171 15.731 13.985 16.3054 12.2764C16.3887 12.0276 16.1979 11.7713 15.9334 11.7713H14.8562C14.5133 11.7713 14.2362 11.4977 14.2362 11.16C14.2362 10.8213 14.5133 10.5467 14.8562 10.5467H15.9005C16.2463 10.5467 16.5263 10.2703 16.5263 9.92875C16.5263 9.58722 16.2463 9.31075 15.9005 9.31075H14.8562C14.5133 9.31075 14.2362 9.03619 14.2362 8.69849C14.2362 8.35984 14.5133 8.08528 14.8562 8.08528H15.9005C16.2463 8.08528 16.5263 7.8088 16.5263 7.46728C16.5263 7.12575 16.2463 6.84928 15.9005 6.84928H14.8562C14.5133 6.84928 14.2362 6.57472 14.2362 6.23606C14.2362 5.89837 14.5133 5.62381 14.8562 5.62381H15.9886C16.2483 5.62381 16.4343 5.3789 16.3645 5.13113C15.8501 3.32401 14.1694 2 12.1748 2H11.8251C9.42172 2 7.47363 3.92287 7.47363 6.29729V10.9198C7.47363 13.2933 9.42172 15.2171 11.8251 15.2171Z" fill="currentColor"></path>
+                                                      <path opacity="0.4" d="M19.5313 9.82568C18.9966 9.82568 18.5626 10.2533 18.5626 10.7823C18.5626 14.3554 15.6186 17.2627 12.0005 17.2627C8.38136 17.2627 5.43743 14.3554 5.43743 10.7823C5.43743 10.2533 5.00345 9.82568 4.46872 9.82568C3.93398 9.82568 3.5 10.2533 3.5 10.7823C3.5 15.0873 6.79945 18.6413 11.0318 19.1186V21.0434C11.0318 21.5715 11.4648 22.0001 12.0005 22.0001C12.5352 22.0001 12.9692 21.5715 12.9692 21.0434V19.1186C17.2006 18.6413 20.5 15.0873 20.5 10.7823C20.5 10.2533 20.066 9.82568 19.5313 9.82568Z" fill="currentColor"></path>
+                                                  </svg>
+                                                  Announcements
+                                              </a>
+                                          </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="iq-header-img">
+
+
+
+                <img src="wall4.jpg" class="theme-color-default-img img-fluid w-100 h-100 animated-scaleX" alt="header">
+            </div>
+        </div> <!-- Nav Header Component End -->
+        <!--Nav End-->
+        </div>
+        <div class="conatiner-fluid content-inner mt-n5 py-0">
+            <div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <div class="header-title">
+                                    <h4 class="card-title">Aptitude Test</h4>
+                                </div>
+                            </div>
+                            <div class="card-body px-0">
+
+                                <div class="quizzy">
+                                    <div class="quiz-container" id="quiz">
+                                        <div class="quiz-header">
+                                            <h2 class="quiz-h2" id="question">Question Text</h2>
+                                            <ul class="quiz-ul">
+                                                <li class="quiz-li">
+                                                    <input type="radio" name="answer" id="a" class="answer">
+                                                    <label class="quiz-label" for="a" id="a_text">Answer</label>
+                                                </li>
+                                                <li class="quiz-li">
+                                                    <input type="radio" name="answer" id="b" class="answer">
+                                                    <label class="quiz-label" for="b" id="b_text">Answer</label>
+                                                </li>
+                                                <li class="quiz-li">
+                                                    <input type="radio" name="answer" id="c" class="answer">
+                                                    <label class="quiz-label" for="c" id="c_text">Answer</label>
+                                                </li>
+                                                <li class="quiz-li">
+                                                    <input type="radio" name="answer" id="d" class="answer">
+                                                    <label class="quiz-label" for="d" id="d_text">Answer</label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <button class="next" id="submit">Submit</button>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    const quizData = <%- JSON.stringify(qData) %>;
+
+                                    const quiz = document.getElementById("quiz");
+                                    const answerEls = document.querySelectorAll(".answer");
+                                    const questionEl = document.getElementById("question");
+                                    const a_text = document.getElementById("a_text");
+                                    const b_text = document.getElementById("b_text");
+                                    const c_text = document.getElementById("c_text");
+                                    const d_text = document.getElementById("d_text");
+                                    const submitBtn = document.getElementById("submit");
+                                    let currentQuiz = 0;
+                                    let score = 0;
+                                    loadQuiz();
+                                    function loadQuiz() {
+                                        deselectAnswers();
+                                        const currentQuizData = quizData[currentQuiz];
+                                        questionEl.innerText = currentQuizData.question;
+                                        a_text.innerText = currentQuizData.a;
+                                        b_text.innerText = currentQuizData.b;
+                                        c_text.innerText = currentQuizData.c;
+                                        d_text.innerText = currentQuizData.d;
+                                    }
+                                    function deselectAnswers() {
+                                        answerEls.forEach((answerEl) => (answerEl.checked = false));
+                                    }
+                                    function getSelected() {
+                                        let answer;
+                                        answerEls.forEach((answerEl) => {
+                                            if (answerEl.checked) {
+                                                answer = answerEl.id;
+                                            }
+                                        });
+                                        return answer;
+                                    }
+                                    submitBtn.addEventListener("click", () => {
+                                        const answer = getSelected();
+                                        if (answer) {
+                                            if (answer === quizData[currentQuiz].correct) {
+                                                score++;
+                                            }
+                                            currentQuiz++;
+                                            if (currentQuiz < quizData.length) {
+                                                loadQuiz();
+                                            } else {
+                                                quiz.innerHTML = `
+                    <h2 class="quiz-h2">You answered ${score}/${quizData.length} questions correctly</h2>
+                    <button class="next" onclick="location.reload()">Reload</button>
+                    `;
+                                            }
+                                        }
+                                    });
+
+                                </script>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Section Start -->
+
+
+        <%-include('../includes/footer.ejs') %>
