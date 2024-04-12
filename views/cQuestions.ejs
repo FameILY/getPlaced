@@ -4,12 +4,12 @@
 
   <!-- Nav Header Component Start -->
   <div class="iq-navbar-header" style="height: 215px;">
-    <div class="container-fluid iq-container"> 
+    <div class="container-fluid iq-container">
       <div class="row">
         <div class="col-md-12">
           <div class="flex-wrap d-flex justify-content-between align-items-center">
             <div> 
-              <h1>Your Personalized Dashboard</h1>
+              <h1>Prepare by the questions from the top companies!</h1>
               <p>Welcome to Get Placed, your go-to preparation web app for college placements! Our platform is designed
                 to help you excel in your job search journey by providing curated courses and insightful blogs tailored
                 to your needs. </p>
@@ -43,7 +43,7 @@
       <div class="col-md-12 col-lg-12">
         <div class="card">
           <div class="card-body">
-            <h3>Courses</h3>
+            <h3>Aptitude Questions</h3>
           </div>
         </div>
       </div>
@@ -55,77 +55,26 @@
 
 
 
-            <% if (Course==null) { %>
-              <p> No Courses to recommend, make sure you have set your interests first!...</p>
-             <% } else {
-              Course.Courses.forEach(function(course) {
-              %>
+            
                 <div class="card" style="width: 15rem;">
-                  <img src="<%=course.resourceThumbnail%>"  class="card-img-top" alt="...">
+                  <img src="https://www.indiabix.com/_files/images/placement-companies/amazon.png"  class="card-img-top" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title"><%=course.resourceTitle%></h5>
-                    <p class="card-text"><%=course.resourceSnippet%></p>
+                    <h5 class="card-title">Amazon</h5>
+                    <p class="card-text">Aptitude questions quiz</p>
                   </div>
-                  <!-- <ul class="list-group list-group-flush">
-                  <li class="list-group-item">An item</li>
-                  <li class="list-group-item">A second item</li>
-                  <li class="list-group-item">A third item</li>
-                </ul> -->
+                  <ul class="list-group list-group-flush">
+                  <li class="list-group-item">2016 Aptitude Test</li>
+                  <!-- <li class="list-group-item">A second item</li>
+                  <li class="list-group-item">A third item</li> -->
+                </ul>
                   <div class="card-body">
-                    <a href="<%=course.resourceLink%>" class="card-link">Go to Course</a>
+
+                    <a href="/prepare" class="card-link">Prepare</a>
+                    <a href="/quiz/amazon" class="card-link">Start</a>
                   </div>
                 </div>
-
-                <% })
-               } %>
-
               </div>
 
-
-          </div>
-
-          <div class="col-md-12 col-lg-12">
-            <div class="card">
-              <div class="card-body">
-                <h3>Blogs / Articles</h3>
-              </div>
-            </div>
-          </div>
-
-          <!-- <div class="col-md-12 col-xl-6">
-           
-         </div>
-         <div class="col-md-12 col-xl-6">
-           
-         </div>          -->
-          <div class="col-md-12 col-lg-12">
-
-            <div class="d-flex flex-wrap justify-content-between">
-            <% if (Articles==null) { %>
-              <p> No blogs to recommend, make sure you have set your interests first!...</p>
-             <% } else { 
-              Articles.Articles.forEach(function(blog) {
-              %>
-
-            <div class="card" style="width: 15rem;">
-              <img src="<%=blog.resourceThumbnail%>" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title"><%=blog.resourceTitle%></h5>
-                <p class="card-text"><%=blog.resourceSnippet%></p>
-              </div>
-              <!-- <ul class="list-group list-group-flush">
-                  <li class="list-group-item">An item</li>
-                  <li class="list-group-item">A second item</li>
-                  <li class="list-group-item">A third item</li>
-                </ul> -->
-              <div class="card-body">
-                <a href="<%=blog.resourceLink%>" class="card-link">Go to Blog</a>
-              </div>
-            </div>
-
-            <% })} %>
-
-            </div>
 
           </div>
 

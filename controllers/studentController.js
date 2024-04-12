@@ -83,6 +83,9 @@ exports.setUpProfile = async (req, res) => {
 };
 
 exports.renderSetProfile = async (req,res) => {
+  if (!req.session.user){
+    res.send("no session")
+  } else {
 
 
   let student = new Student()
@@ -90,4 +93,5 @@ exports.renderSetProfile = async (req,res) => {
 
   res.render('userProfile', {Student: prof})
 
+  }
 }

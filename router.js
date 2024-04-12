@@ -33,15 +33,24 @@ router.post('/getCourses',resourceController.getCourses)
 router.post('/getArticles', resourceController.getArticles)
 
 //quiz
-router.get('/quiz', (req,res)=> {
-    let stud = new Student()
-    let prof = stud.getStudentByEmail(req.session.user.accountEmail)
+// router.get('/quiz', (req,res)=> {
+//     if (!req.session.user){
+//         res.send("No session")
+//     } else {
 
-    res.render('quiz/quiz', {Student: prof})
-})
+    
 
-router.get('/quiz2', quizController.renderQuiz)
+//     let stud = new Student()
+//     let prof = stud.getStudentByEmail(req.session.user.accountEmail)
 
+//     res.render('quiz/quiz', {Student: prof})
+//     }
+// })
+
+router.get('/cQuestions', quizController.renderCQuestions)
+router.get('/quiz/:qName', quizController.renderQuiz)
+
+router.post('/saveScore', quizController.saveScore)
 
 router.use((req, res) => {
     res.status(404).render("404");

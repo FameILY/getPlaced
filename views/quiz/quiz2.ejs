@@ -2,7 +2,7 @@
 
     <%-include('../includes/flash.ejs')%>
 
-        <link rel="stylesheet" href="custom-css/quiz.css" />
+        <link rel="stylesheet" href="/custom-css/quiz.css" />
 
 
 
@@ -37,7 +37,7 @@
 
 
 
-                <img src="wall4.jpg" class="theme-color-default-img img-fluid w-100 h-100 animated-scaleX" alt="header">
+                <img src="/wall4.jpg" class="theme-color-default-img img-fluid w-100 h-100 animated-scaleX" alt="header">
             </div>
         </div> <!-- Nav Header Component End -->
         <!--Nav End-->
@@ -98,7 +98,7 @@
                                     function loadQuiz() {
                                         deselectAnswers();
                                         const currentQuizData = quizData[currentQuiz];
-                                        questionEl.innerText = currentQuizData.question;
+                                        questionEl.innerText = (currentQuiz)+")"+" "+currentQuizData.question;
                                         a_text.innerText = currentQuizData.a;
                                         b_text.innerText = currentQuizData.b;
                                         c_text.innerText = currentQuizData.c;
@@ -128,7 +128,13 @@
                                             } else {
                                                 quiz.innerHTML = `
                     <h2 class="quiz-h2">You answered ${score}/${quizData.length} questions correctly</h2>
-                    <button class="next" onclick="location.reload()">Reload</button>
+                    <form method="post" action="/saveScore">
+                        <input type="hidden" name="score" value="${score}">
+                        <input type="hidden" name="from" value="${quizData.length}">
+
+                        <input type="hidden" name="qName" value="<%=qName%>"/>
+                        <button class="next">Save</button>
+                        </form>
                     `;
                                             }
                                         }
