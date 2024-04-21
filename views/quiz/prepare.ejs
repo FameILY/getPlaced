@@ -1,7 +1,50 @@
-<%-include('./includes/header.ejs') %>
+<%-include('../includes/header.ejs') %>
 
-<%-include('./includes/flash.ejs')%>
+<%-include('../includes/flash.ejs')%>
 
+
+<style>
+  .ques-card {
+      border: 1px solid #dee2e6;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ques-card-header {
+    border-radius: 10px 10px 0 0px;
+      background-color: #dee2e6;
+      border-bottom: 1px solid #dee2e6;
+  }
+  
+  .ques-card-body {
+      padding: 20px;
+  }
+  
+  .ques-card-title {
+    padding: 15px;
+      /* margin-bottom: 15px; */
+  }
+
+  .ques-card-text {
+    color:dimgray
+  }
+  
+  .options {
+      list-style-type: none;
+      padding: 0;
+  }
+  
+  .option {
+      margin-bottom: 10px;
+  }
+  
+  .correct {
+      color: green;
+      font-weight: bold;
+  }
+  
+  </style>
   <!-- Nav Header Component Start -->
   <div class="iq-navbar-header" style="height: 215px;">
     <div class="container-fluid iq-container">
@@ -9,7 +52,7 @@
         <div class="col-md-12">
           <div class="flex-wrap d-flex justify-content-between align-items-center">
             <div> 
-              <h1>Prepare by the questions from the top companies!</h1>
+              <h1>Prepare for <%=qName%> Aptitude Test</h1>
               <p>Welcome to Get Placed, your go-to preparation web app for college placements! Our platform is designed
                 to help you excel in your job search journey by providing curated courses and insightful blogs tailored
                 to your needs. </p>
@@ -29,7 +72,7 @@
     </div>
     <div class="iq-header-img">
 
-      <img src="wall4.jpg" class="theme-color-default-img img-fluid w-100 h-100 animated-scaleX" alt="header">
+      <img src="/wall4.jpg" class="theme-color-default-img img-fluid w-100 h-100 animated-scaleX" alt="header">
     </div>
   </div>
   <!-- Nav Header Component End -->
@@ -47,32 +90,34 @@
           </div>
         </div>
       </div>
+
       <div class="col-md-12 col-lg-8">
         <div class="row">
           <div class="col-md-12">
 
-            <div class="d-flex flex-wrap justify-content-between">
 
+              <div class="card">
+               
+                <div class="card-body">
 
+                  <% qData.forEach((question, index) => { %>
+                    <div class="ques-card">
+                        <div class="ques-card-header">
+                            <h6 class="ques-card-title">Question <%=index +1%></h6>
+                        </div>
+                        <div class="ques-card-body">
+                            <p class="ques-card-text"><%=question.question%></p>
+                            <ul class="options">
+                                <li class="option <%= question.correct == 'a' ? "correct" :"" %>"><%=question.a%></li>
+                                <li class="option <%= question.correct == 'b' ?"correct":"" %>"><%=question.b%></li>
+                                <li class="option <%= question.correct == 'c' ?"correct":"" %>"><%=question.c%></li>
+                                <li class="option <%= question.correct == 'd' ?"correct":"" %>"><%=question.d%></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <%})%>
 
-            
-                <div class="card" style="width: 15rem;">
-                  <img src="https://www.indiabix.com/_files/images/placement-companies/amazon.png"  class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Amazon</h5>
-                    <p class="card-text">Aptitude questions quiz</p>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                  <li class="list-group-item">2016 Aptitude Test</li>
-                  <!-- <li class="list-group-item">A second item</li>
-                  <li class="list-group-item">A third item</li> -->
-                </ul>
-                  <div class="card-body">
-
-                    <a href="/prepare/amazon" class="card-link">Prepare</a>
-                    <a href="/quiz/amazon" class="card-link">Start</a>
-                  </div>
-                </div>
+                  
               </div>
 
 
@@ -81,32 +126,34 @@
 
         </div>
       </div>
-      <div class="col-md-12 col-lg-4">
-        <div class="row">
-          <div class="col-md-12 col-lg-12">
-            <div class="card text-center">
-              <div class="card-header">
-                Featured
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Explore other domains!</h5>
-                <p class="card-text">Dive into new domains with Getplaced. Explore, learn, grow.</p>
-                <a href="#" class="btn btn-primary">Set Up Profile!</a>
-              </div>
-              <div class="card-footer text-body-secondary">
-                2 days ago
-              </div>
+    </div>
+
+    <div class="col-md-12 col-lg-4">
+      <div class="row">
+        <div class="col-md-12 col-lg-12">
+          <div class="card text-center">
+            <div class="card-header">
+              Featured
             </div>
-
-
+            <div class="card-body">
+              <h5 class="card-title">Explore other domains!</h5>
+              <p class="card-text">Dive into new domains with Getplaced. Explore, learn, grow.</p>
+              <a href="/setUpProfile" class="btn btn-primary">Set Up Profile!</a>
+            </div>
+            <div class="card-footer text-body-secondary">
+              2 days ago
+            </div>
           </div>
-          <div class="col-md-12 col-lg-12">
 
-          </div>
+
+        </div>
+        <div class="col-md-12 col-lg-12">
+
         </div>
       </div>
     </div>
   </div>
+  </div>
 
   <!-- Footer Section Start -->
-  <%-include('./includes/footer.ejs') %>
+  <%-include('../includes/footer.ejs') %>

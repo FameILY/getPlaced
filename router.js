@@ -49,6 +49,7 @@ router.post('/getArticles', resourceController.getArticles)
 
 router.get('/cQuestions', quizController.renderCQuestions)
 router.get('/quiz/:qName', quizController.renderQuiz)
+router.get('/prepare/:qName', quizController.renderPrepare)
 
 router.post('/saveScore', quizController.saveScore)
 

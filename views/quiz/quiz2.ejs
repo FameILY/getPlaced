@@ -49,15 +49,15 @@
                         <div class="card">
                             <div class="card-header d-flex justify-content-between">
                                 <div class="header-title">
-                                    <h4 class="card-title">Aptitude Test</h4>
+                                    <h4 class="card-title"><%=qName%> Aptitude Test</h4>
                                 </div>
                             </div>
-                            <div class="card-body px-0">
+                            <!-- <div class="card-body"> -->
 
                                 <div class="quizzy">
                                     <div class="quiz-container" id="quiz">
                                         <div class="quiz-header">
-                                            <h2 class="quiz-h2" id="question">Question Text</h2>
+                                            <h5 class="quiz-h2" id="question">Question Text</h5>
                                             <ul class="quiz-ul">
                                                 <li class="quiz-li">
                                                     <input type="radio" name="answer" id="a" class="answer">
@@ -77,7 +77,10 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <button class="next" id="submit">Submit</button>
+                                        <div class="button-container">
+                                            <!-- <button name="prev" class="next" id="prev">Previous</button> -->
+                                            <button class="next" id="submit">Next</button>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -92,13 +95,16 @@
                                     const c_text = document.getElementById("c_text");
                                     const d_text = document.getElementById("d_text");
                                     const submitBtn = document.getElementById("submit");
+                                    const prevBtn = document.getElementById("prev");
+
                                     let currentQuiz = 0;
+                            
                                     let score = 0;
                                     loadQuiz();
                                     function loadQuiz() {
                                         deselectAnswers();
                                         const currentQuizData = quizData[currentQuiz];
-                                        questionEl.innerText = (currentQuiz)+")"+" "+currentQuizData.question;
+                                        questionEl.innerText = (currentQuiz + 1)+")"+" "+currentQuizData.question;
                                         a_text.innerText = currentQuizData.a;
                                         b_text.innerText = currentQuizData.b;
                                         c_text.innerText = currentQuizData.c;
@@ -116,6 +122,16 @@
                                         });
                                         return answer;
                                     }
+                                    // prevBtn.addEventListener("click", () => {
+                                    //     if (currentQuiz != 0){    
+                                    //         currentQuiz--;
+                                    //     }
+                                    //     if (currentQuiz >= 0) {
+                                    //         loadQuiz();
+                                    //     }
+                                    // });
+
+
                                     submitBtn.addEventListener("click", () => {
                                         const answer = getSelected();
                                         if (answer) {
@@ -123,26 +139,31 @@
                                                 score++;
                                             }
                                             currentQuiz++;
+            
                                             if (currentQuiz < quizData.length) {
                                                 loadQuiz();
+
+                                                if(currentQuiz == quizData.length -1){
+                                                    submitBtn.innerText = "Submit";
+                                                }
                                             } else {
                                                 quiz.innerHTML = `
-                    <h2 class="quiz-h2">You answered ${score}/${quizData.length} questions correctly</h2>
-                    <form method="post" action="/saveScore">
-                        <input type="hidden" name="score" value="${score}">
-                        <input type="hidden" name="from" value="${quizData.length}">
+                                                    <h2 class="quiz-h2">You answered ${score}/${quizData.length} questions correctly</h2>
+                                                    <form method="post" action="/saveScore">
+                                                        <input type="hidden" name="score" value="${score}">
+                                                        <input type="hidden" name="from" value="${quizData.length}">
 
-                        <input type="hidden" name="qName" value="<%=qName%>"/>
-                        <button class="next">Save</button>
-                        </form>
-                    `;
+                                                        <input type="hidden" name="qName" value="<%=qName%>"/>
+                                                        <button class="next">Save</button>
+                                                        </form>
+                                                    `;
                                             }
                                         }
                                     });
 
                                 </script>
 
-                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>
                 </div>
