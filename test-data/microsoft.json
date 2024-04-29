@@ -1,0 +1,82 @@
+[
+  {
+    "question": "There are two pipes A and B that can fill a tank in 10 and 15 hours respectively. If both pipes work together, how long will it take to fill the tank?",
+    "a": "5 hours",
+    "b": "6 hours",
+    "c": "7.5 hours",
+    "d": "9 hours",
+    "correct": "c"
+  },
+  {
+    "question": "If a certain number is divided by 7, the remainder is 3. What is the remainder when the same number is divided by 14?",
+    "a": "1",
+    "b": "3",
+    "c": "5",
+    "d": "7",
+    "correct": "b"
+  },
+  {
+    "question": "A car travels a certain distance at a speed of 60 km/h. If the same distance is traveled at a speed 20 km/h slower, how much extra time will it take to cover the distance?",
+    "a": "1 hour",
+    "b": "1.5 hours",
+    "c": "2 hours",
+    "d": "2.5 hours",
+    "correct": "d"
+  },
+  {
+    "question": "If set P = {1, 2, 3} and set Q = {2, 3, 4}, what is the union of sets P and Q?",
+    "a": "{1, 2, 3, 4}",
+    "b": "{1, 2, 3}",
+    "c": "{2, 3}",
+    "d": "{1, 4}",
+    "correct": "a"
+  },
+  {
+    "question": "A clock strikes once at 1 o'clock, twice at 2 o'clock, and so on. How many times will it strike between 1 pm and 6 pm?",
+    "a": "70",
+    "b": "80",
+    "c": "90",
+    "d": "100",
+    "correct": "b"
+  },
+  {
+    "question": "If x^2 + y^2 = 25 and xy = 6, what is the value of x + y?",
+    "a": "3",
+    "b": "4",
+    "c": "5",
+    "d": "6",
+    "correct": "b"
+  },
+  {
+    "question": "A train crosses a signal pole in 12 seconds at a speed of 80 km/h. What is the length of the train in meters?",
+    "a": 100,
+    "b": 150,
+    "c": 200,
+    "d": 250,
+    "correct": "c"
+  },
+  {
+    "question": "If a rectangle has a length that is 3 cm more than twice its width, and the perimeter of the rectangle is 30 cm, what is the width of the rectangle?",
+    "a": "3 cm",
+    "b": "4 cm",
+    "c": "5 cm",
+    "d": "6 cm",
+    "correct": "b"
+  },
+  {
+    "question": "A company offers a discount of 15% on a product initially priced at $200. If a customer also has a coupon for an additional 10% off, what is the final price of the product?",
+    "a":"$153",
+    "b":"$162",
+    "c":"$170",
+    "d":"$178",
+    "correct": "a"
+  },
+  {
+    "question": "If set A = {a, b, c} and set B = {a, c, d}, what is the symmetric difference of sets A and B?",
+    "a": "{b, d}",
+    "b": "{a, c}",
+    "c": "{a, b, d}",
+    "d": "{a, b, c, d}",
+    "correct": "a"
+  }
+]

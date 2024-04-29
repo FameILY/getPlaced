@@ -150,8 +150,8 @@
                                                 quiz.innerHTML = `
                                                     <h2 class="quiz-h2">You answered ${score}/${quizData.length} questions correctly</h2>
                                                     <form method="post" action="/saveScore">
-                                                        <input type="hidden" name="score" value="${score}">
-                                                        <input type="hidden" name="from" value="${quizData.length}">
+                                                        <input type="hidden" name="qScore" value="${score}">
+                                                        <input type="hidden" name="qFrom" value="${quizData.length}">
 
                                                         <input type="hidden" name="qName" value="<%=qName%>"/>
                                                         <button class="next">Save</button>

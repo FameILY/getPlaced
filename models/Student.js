@@ -69,7 +69,7 @@ Student.prototype.cleanUp = function () {
     state: this.data.state,
     address: this.data.address,
     pinCode: Number(this.data.pinCode),
-    contactNumber: this.data.contactNumber,
+    contactNumber: this.data.accountContactNo,
     profileImage: this.data.profileImage,
     createdDate: new Date(),
   };
@@ -187,12 +187,13 @@ Student.prototype.setUpProfile = async function (userProfile, em) {
           createdDate: new Date(),
         },
       }, {
-        new: true
+        returnDocument: 'after'
       }
     );
 
     // console.log(data)
 
+    console.log("Domain: ",data.domains)
     return data;
   } catch (err) {
     console.log(err);

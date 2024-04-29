@@ -55,24 +55,27 @@
 
 
 
-            
+            <%qData.quizNames.forEach(name=> { %>
                 <div class="card" style="width: 15rem;">
-                  <img src="https://www.indiabix.com/_files/images/placement-companies/amazon.png"  class="card-img-top" alt="...">
+                  <img src="https://media.geeksforgeeks.org/wp-content/uploads/20230919110724/Aptitute-Test.webp"  class="card-img-top" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title">Amazon</h5>
+                    <h5 class="card-title"><%=name%></h5>
                     <p class="card-text">Aptitude questions quiz</p>
                   </div>
                   <ul class="list-group list-group-flush">
-                  <li class="list-group-item">2016 Aptitude Test</li>
-                  <!-- <li class="list-group-item">A second item</li>
-                  <li class="list-group-item">A third item</li> -->
+                  <li class="list-group-item">Aptitude Questions</li>
+        
                 </ul>
                   <div class="card-body">
 
-                    <a href="/prepare/amazon" class="card-link">Prepare</a>
-                    <a href="/quiz/amazon" class="card-link">Start</a>
+                    <a href="/prepare/<%=name%>" class="card-link">Prepare</a>
+                    <a href="/quiz/<%=name%>" class="card-link">Start</a>
                   </div>
                 </div>
+
+                <%}) %>
+
+
               </div>
 
 

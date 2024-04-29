@@ -3,6 +3,7 @@ const accountController = require("./controllers/accountController")
 const studentController = require("./controllers/studentController")
 const resourceController = require("./controllers/resourceController")
 const quizController = require("./controllers/quizController")
+const portfolioController = require("./controllers/portfolioController")
 const path = require("path");
 const Student = require("./models/Student")
 
@@ -19,6 +20,7 @@ router.get('/login', (req, res)=> {
 })
 
 router.get('/setUpProfile', studentController.renderSetProfile)
+router.get('/viewProfile', studentController.renderViewProfile)
 
 router.get('/home', accountController.renderHome)
 router.get('/logout', accountController.logout)
@@ -33,26 +35,23 @@ router.post('/getCourses',resourceController.getCourses)
 router.post('/getArticles', resourceController.getArticles)
 
 //quiz
-// router.get('/quiz', (req,res)=> {
-//     if (!req.session.user){
-//         res.send("No session")
-//     } else {
-
-    
-
-//     let stud = new Student()
-//     let prof = stud.getStudentByEmail(req.session.user.accountEmail)
-
-//     res.render('quiz/quiz', {Student: prof})
-//     }
-// })
 
 router.get('/cQuestions', quizController.renderCQuestions)
 router.get('/quiz/:qName', quizController.renderQuiz)
 router.get('/prepare/:qName', quizController.renderPrepare)
 
+//saving scores
 router.post('/saveScore', quizController.saveScore)
 
+
+
+
+//test routes
+router.get('/getPortfolio', portfolioController.test)
+
+router.get('/what', (req,res)=> {
+    res.render('error')
+})
 router.use((req, res) => {
     res.status(404).render("404");
   });

@@ -5,7 +5,7 @@ const path = require("path");
 exports.setUpProfile = async (req, res) => {
   try {
     if (!req.session.user) {
-      console.log("no session ")
+      console.log("no session ");
       res.status(400).json({ message: "Session required" });
     } else {
       // They should also give me email address or _id from session
@@ -40,37 +40,43 @@ exports.setUpProfile = async (req, res) => {
           fileName
         );
 
-
         await file.mv(savePath);
         req.body.certificateImage = fileName;
       }
 
       if (req.files.profileImage == null) {
-        console.log("no profile image to edit")
+        console.log("no profile image to edit");
         delete req.body.profileImage;
       }
 
       if (req.files.certificateImage == null) {
-        console.log("no certificate image to edit")
+        console.log("no certificate image to edit");
         delete req.body.certificateImage;
       }
 
-
       //sending to model
-      console.log(req.session.user.accountEmail)
+      console.log(req.session.user.accountEmail);
       let email = req.session.user.accountEmail;
       let data = await student.setUpProfile(req.body, email);
       console.log("Back to controller");
-
+      // console.log(data)
       if (data != null) {
+        console.log('data is not null')
         let account = new Account();
         // console.log("data._id")
         // console.log(data._id)
-        let result = account.updateStatus(data.studentEmail);
-        if (result != null) {
-          return res.status(200).redirect('/setUpProfile')
+        if (data.domains != '') {
+          console.log('domain is not an empty string');
+          let result = await account.updateStatus(data.studentEmail);
+          if (result != null) {
+            return res.status(200).redirect("/setUpProfile");
+          } else {
+            console.log("Something wrong when updating status");
+          }
         } else {
-          console.log("Something wrong when updating status");
+          console.log('domain is an empty string')
+          let result = await account.downgradeStatus(data.studentEmail);
+          res.redirect('/setUpProfile')
         }
       } else {
         console.log("check session email");
@@ -82,16 +88,24 @@ exports.setUpProfile = async (req, res) => {
   }
 };
 
-exports.renderSetProfile = async (req,res) => {
-  if (!req.session.user){
-    res.send("no session")
+exports.renderSetProfile = async (req, res) => {
+  if (!req.session.user) {
+    res.send("no session");
   } else {
+    let student = new Student();
+    let prof = await student.getStudentByEmail(req.session.user.accountEmail);
 
-
-  let student = new Student()
-  let prof = await student.getStudentByEmail(req.session.user.accountEmail)
-
-  res.render('userProfile', {Student: prof})
-
+    res.render("userProfile", { Student: prof });
   }
-}
+};
+
+exports.renderViewProfile = async (req, res) => {
+  if (!req.session.user) {
+    res.send("no session");
+  } else {
+    let student = new Student();
+    let prof = await student.getStudentByEmail(req.session.user.accountEmail);
+
+    res.render("viewProfile", { Student: prof });
+  }
+};

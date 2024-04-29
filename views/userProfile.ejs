@@ -42,7 +42,7 @@
                   <div class="card-body">
                         <div class="form-group">
                            <div class="profile-img-edit position-relative">
-                              <img src="/profileImages/<%=Student.profileImage%>" alt="profile-pic" class="theme-color-default-img profile-pic rounded avatar-100">
+                              <img src="" id="profileImage" alt="profile-pic" class="theme-color-default-img profile-pic rounded avatar-100">
                 
                               <div class="upload-icone bg-primary">
                                  <svg class="upload-button" width="14" height="14" viewBox="0 0 24 24" onclick="document.querySelector('.file-upload').click();">
@@ -66,7 +66,7 @@
                         <div class="form-group">
                            <label class="form-label">Domain:</label>
                            <select name="domains" class="selectpicker form-control" data-style="py-0">
-                              <option>Select</option>
+                              <option value=''>Select</option>
                               <option value="Blockchain"  <% if (Student.domains === 'Blockchain') { %>selected<% } %> >Blockchain</option>
                               <option value="AI"  <% if (Student.domains === 'AI') { %>selected<% } %>>Artificial Intellegence (AI)</option>
                               <option value="webDevelopment"  <% if (Student.domains === 'webDevelopment') { %>selected<% } %>>Web Development</option>
@@ -328,8 +328,8 @@
                               </div>
                               <div class="form-group col-md-6">
                                  <label class="form-label" for="certificateImage">Image:</label>
-                                 <img class="img-fluid" src="/certificates/<%=Student.certificates[0].certificateImage%>"/>
-                                 <input type="file" accept=".jpg,.png,.jpeg,.gif" class="form-control" name="certificateImage" value="<%=Student.certificates[0].certificateImage%>"  id="certificateImage" placeholder="">
+                                 <img class="img-fluid" id="certificateImage" src=""/>
+                                 <input type="file" id="certificateUpload" accept=".jpg,.png,.jpeg,.gif" class="form-control" name="certificateImage" value="<%=Student.certificates[0].certificateImage%>"  id="certificateImage" placeholder="">
                               </div>
 
                            </div>
@@ -343,6 +343,43 @@
          </div>
       </div>
       </div>
+
+      <script>
+         const profInput = document.getElementById("file-upload");
+         const profileImage = document.getElementById("profileImage");
+
+
+         const certificateImage = document.getElementById("certificateImage");
+         const certificateUpload = document.getElementById("certificateUpload");
+
+         let image = "/profileImages/<%=Student.profileImage %>";
+         profileImage.src = image;
+         profInput.addEventListener('change', function() {
+            const file = profInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                    profileImage.src = reader.result;
+                }
+                reader.readAsDataURL(file);
+            } else {
+                profileImage.src = image;
+            }
+        });
+        certificateImage.src = "/certificates/<%=Student.certificates[0].certificateImage%>";
+        certificateUpload.addEventListener('change', function() {
+         const file = certificateUpload.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                  certificateImage.src = reader.result;
+                }
+                reader.readAsDataURL(file);
+            } else {
+               certificateImage.src = "/certificates/<%=Student.certificates[0].certificateImage%>";
+            }
+        })
+         </script>
       
       <!-- Footer Section Start -->
 <%-include("./includes/footer.ejs")%>

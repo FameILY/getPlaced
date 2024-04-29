@@ -21,7 +21,7 @@ exports.regAccount = async (req, res) => {
 
           let student = new Student(req.body);
           //running the stud model
-          let data = await student.regStudent();
+          let data = await student.regStudent(); 
 
           console.log("back in controller again");
           // console.log("data from student:");
@@ -138,7 +138,7 @@ exports.renderHome = async (req, res) => {
         // }
         
         // console.log(req.flash('errors'));
-        res.render('dashboard', { Student: studProf, Course: null, Articles: null, errors:  ["Set up your profile to get personalized interface"]})
+        res.render('dashboard', { Student: studProf, Course: null, Articles: null, errors:  ["Set up your profile to get personalized interface"], currentRoute: 'home'})
 
       } else {
         console.log("profile is set")
@@ -147,7 +147,7 @@ exports.renderHome = async (req, res) => {
         let articles = await resourceController.getArticles(req, res)
         // console.log(articles)
       
-        res.render('dashboard', { Student: studProf, Course: courses, Articles: articles})
+        res.render('dashboard', { Student: studProf, Course: courses, Articles: articles, currentRoute: 'home'})
       }
     } else {
       console.log('not a student')

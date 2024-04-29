@@ -1,0 +1,82 @@
+[
+    {
+        "question": "A container holds 2 liters of orange juice and 3 liters of apple juice. If 1 liter of the mixture is poured out, what is the ratio of orange juice to apple juice remaining in the container?",
+        "a": "1:2",
+        "b": "1:3",
+        "c": "2:3",
+        "d": "3:2",
+        "correct": "b"
+      },
+      {
+        "question": "The value of sin(45°) is:",
+        "a": "0",
+        "b": "0.5",
+        "c": "1",
+        "d": "2",
+        "correct": "b"
+      },
+      {
+        "question": "A company's stock price increased by 2% one day and then decreased by 2% the next day. Is the stock price now higher, lower, or the same compared to the original price?",
+        "a": "Higher",
+        "b": "Lower",
+        "c": "The same",
+        "d": "It depends on the original price",
+        "correct": "c"
+      },
+      {
+        "question": "What is the next number in the sequence: 2, 5, 8, 11, ... ?",
+        "a": "13",
+        "b": "14",
+        "c": "15",
+        "d": "16",
+        "correct": "a"
+      },
+      {
+        "question": "You are searching the web for information on a new type of flower. The top three results all mention the flower's scientific name. This suggests that the information is likely to be:",
+        "a": "Highly technical",
+        "b": "Moderately technical",
+        "c": "Neutral",
+        "d": "General audience",
+        "correct": "a"
+      },
+      {
+        "question": "If a website claims to offer a guaranteed return on investment, it is most likely:",
+        "a": "A legitimate investment opportunity",
+        "b": "A scam",
+        "c": "Too good to be true",
+        "d": "A sign of a high-risk investment",
+        "correct": "b"
+      },
+      {
+        "question": "The distance between city A and city B is 600 km. A car leaves city A traveling towards city B at a speed of 80 km/h. Another car leaves city B at the same time traveling towards city A at a speed of 90 km/h. How long will it take for the two cars to meet?",
+        "a": "3 hours",
+        "b": "3.5 hours",
+        "c": "4 hours",
+        "d": "4.5 hours",
+        "correct": "c"
+      },
+      {
+        "question": "In a text document, you can use the function f(x) = 2x + 1 to find the value of y at any position x. If the value of y at position 5 is 11, what is the value of y at position 3?",
+        "a": 5,
+        "b": 6,
+        "c": 7,
+        "d": 8,
+        "correct": "b"
+      },
+      {
+        "question": "The probability of event A happening is 0.4, and the probability of event B happening is 0.6. If events A and B are independent (meaning they do not affect each other), what is the probability of both event A and event B happening?",
+        "a": 0.1,
+        "b": 0.2,
+        "c": 0.4,
+        "d": 1.0,
+        "correct": "a"
+      },
+      {
+        "question": "A company survey asks employees to rate their job satisfaction on a scale of 1 (very dissatisfied) to 5 (very satisfied). What type of data is this?",
+        "a": "Nominal",
+        "b": "Ordinal",
+        "c": "Interval",
+        "d": "Ratio",
+        "correct": "b"
+      }
+]

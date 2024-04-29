@@ -100,6 +100,20 @@ Account.prototype.updateStatus = async (email) => {
   return data;
 };
 
+Account.prototype.downgradeStatus = async (email) => {
+  let data = await accountsCollection.findOneAndUpdate(
+    { accountEmail: email },
+    {
+      $set: {
+        isProfileSet: false,
+      },
+    }
+  );
+
+  return data;
+};
+
+
 Account.prototype.checkProfile = async (email) => {
   console.log('checking profile')
   let data = await accountsCollection.findOne({ accountEmail: email });
