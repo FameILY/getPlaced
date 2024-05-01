@@ -63,7 +63,7 @@ exports.loginAccount = async (req, res) => {
       // return res.status(400).json({ message: data });
       res.redirect('/login')
     } else {
-      console.log("This nigga Logged in: ", data.accountEmail);
+      console.log("This user Logged in: ", data.accountEmail);
       if (data.role == "student") {
         try {
           
@@ -100,7 +100,7 @@ exports.logout = async (req, res) => {
     req.session.destroy(() => {
       // res.redirect("/admin/signin");
       res.status(200).redirect("/login")
-      console.log("successfully kicked the nigga out")
+      console.log("successfully kicked the user out")
     });
   } catch (error) {
     console.log(error);
