@@ -1,6 +1,6 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.edge.service import Service as EdgeService
+from selenium.webdriver.edge.options import Options as EdgeOptions
 from bs4 import BeautifulSoup
 import json
 import argparse
@@ -9,12 +9,13 @@ def scrape_coursera(query):
 
     try:
 
-        # Set up Selenium WebDriver
-        service = Service('C:\chromedriver-win64\chromedriver-win64\chromedriver.exe')  # Set the path to your chromedriver
-        options = Options()
-        options.add_argument('--headless')  # Run Chrome in headless mode (no GUI)
-        options.add_argument('--log-level=3') #prevent unnecessary console logs 
-        driver = webdriver.Chrome(service=service, options=options)
+        # Set up Selenium WebDriver for Edge
+        service = EdgeService('C:\edgedriver\msedgedriver.exe')  # Set the path to your msedgedriver executable
+        options = EdgeOptions()
+        options.use_chromium = True  # Use Chromium Edge
+        options.add_argument('--headless')  # Run Edge in headless mode (no GUI)
+        options.add_argument('--log-level=3') # Prevent unnecessary console logs 
+        driver = webdriver.Edge(service=service, options=options)
 
 
         url = f"https://www.coursera.org/courses?query={query}"
@@ -22,7 +23,7 @@ def scrape_coursera(query):
 
         # Wait for the page to load completely (you may need to adjust this timeout)
         driver.implicitly_wait(100)
-
+ 
         # Get the page source after JavaScript execution
         html_content = driver.page_source
 
@@ -38,15 +39,6 @@ def scrape_coursera(query):
             thumbnail = thumbnail_element.find("img")["src"] #done
             courses.append({"resourceTitle": title, "resourceLink": completeLink, "resourceThumbnail": thumbnail, "resourceDomain": query, "resourceType": "Course"})
 
-        # with open('courses.json', 'w') as json_file:
-        #     json.dump(courses, json_file)
-        # Print course information
-        # for course in courses:
-        #     print("Title:", course["title"])
-        #     print("Link:", course["link"])
-        #     print("Thumbnail:", course["thumbnail"])
-        #     print("--------------------------------")
-            
         # Convert courses list to JSON string
         courses_json = json.dumps(courses)
 

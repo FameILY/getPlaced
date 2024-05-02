@@ -47,7 +47,7 @@ router.post('/saveScore', quizController.saveScore)
 
 
 //test routes
-router.get('/getPortfolio', portfolioController.test)
+router.get('/getPortfolio', portfolioController.getPortfolio)
 
 router.get('/what', (req,res)=> {
     res.render('error')

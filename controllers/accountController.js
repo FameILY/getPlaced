@@ -61,7 +61,7 @@ exports.loginAccount = async (req, res) => {
       // console.log("invalid creds")
       // req.flash('errors', 'Invalid Creds baby!')
       // return res.status(400).json({ message: data });
-      res.redirect('/login')
+      res.redirect('/login') 
     } else {
       console.log("This user Logged in: ", data.accountEmail);
       if (data.role == "student") {

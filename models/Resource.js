@@ -29,7 +29,7 @@ Resource.prototype.executeCourseScript = async function (domain) {
     exec(`python ${pathToScript} ${domain}`, (error, stdout, stderr) => {
       if (error) {
         console.error(`Error: ${error.message}`);
-        reject(error.message);
+        reject(error.message); 
         console.log(error.message);
       } else if (stderr) {
         console.error(`stderr: ${stderr}`);
